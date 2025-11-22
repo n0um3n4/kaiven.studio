@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>quiene.studio — Tiny games, big feelings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="quiene.studio — a tiny game studio by a Mexican–Taiwanese duo making weird, heartfelt games just for fun."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #050712;
+        --bg-soft: #0b0f1f;
+        --accent: #ff6dd8;
+        --accent-soft: rgba(255, 109, 216, 0.22);
+        --accent-alt: #4fd6ff;
+        --text-main: #f5f5ff;
+        --text-soft: #a5a6d1;
+        --border-subtle: rgba(255, 255, 255, 0.06);
+        --radius-xl: 24px;
+        --radius-lg: 18px;
+        --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.75);
+        --max-width: 1040px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(
+          circle at top,
+          #14162c 0,
+          #050712 42%,
+          #000 100%
+        );
+        color: var(--text-main);
+        font-family:
+          "Space Grotesk",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+      }
+
+      .page {
+        width: 100%;
+        max-width: var(--max-width);
+        padding: 20px 20px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 40%;
+        background: conic-gradient(
+          from 180deg,
+          var(--accent),
+          var(--accent-alt),
+          var(--accent)
+        );
+        box-shadow: 0 0 18px rgba(255, 109, 216, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        color: #050712;
+      }
+
+      .logo-text-main {
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      .logo-text-sub {
+        font-size: 12px;
+        color: var(--text-soft);
+      }
+
+      nav {
+        display: flex;
+        gap: 16px;
+        font-size: 13px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text-soft);
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition:
+          color 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease;
+      }
+
+      nav a:hover {
+        color: var(--text-main);
+        border-color: rgba(255, 255, 255, 0.12);
+        background: rgba(8, 11, 25, 0.9);
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+        gap: 26px;
+        align-items: center;
+      }
+
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 10px 4px 4px;
+        border-radius: 999px;
+        background: rgba(11, 15, 31, 0.9);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-soft);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .hero-kicker-pill {
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      h1.hero-title {
+        margin: 16px 0 10px;
+        font-size: clamp(32px, 4vw, 40px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-highlight {
+        background-image: linear-gradient(
+          120deg,
+          var(--accent),
+          var(--accent-alt)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-text {
+        margin: 0 0 18px;
+        color: var(--text-soft);
+        max-width: 520px;
+        font-size: 14px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .btn {
+        border-radius: 999px;
+        padding: 9px 18px;
+        font-size: 13px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          transform 0.12s ease,
+          box-shadow 0.12s ease,
+          background 0.12s ease,
+          border-color 0.12s ease,
+          color 0.12s ease;
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+        color: #050712;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+      }
+
+      .btn-ghost {
+        background: rgba(8, 11, 25, 0.9);
+        color: var(--text-soft);
+        border-color: var(--border-subtle);
+      }
+
+      .btn-ghost:hover {
+        background: rgba(11, 15, 31, 0.9);
+        color: var(--text-main);
+        border-color: rgba(255, 255, 255, 0.16);
+      }
+
+      .hero-note {
+        font-size: 11px;
+        color: var(--text-soft);
+        margin-left: 2px;
+      }
+
+      .hero-card {
+        border-radius: var(--radius-xl);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 109, 216, 0.25),
+            transparent 55%
+          ),
+          rgba(7, 10, 23, 0.98);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-soft);
+        padding: 18px 18px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-card-tag {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent-alt);
+      }
+
+      .hero-card-title {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .hero-card-body {
+        font-size: 13px;
+        color: var(--text-soft);
+      }
+
+      .duo-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        padding: 5px 9px;
+        border-radius: 999px;
+        background: rgba(5, 7, 18, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .duo-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+
+      .duo-dot.mex {
+        background: #21c35b;
+      }
+
+      .duo-dot.tw {
+        background: #ff5d5d;
+      }
+
+      .duo-label {
+        color: var(--text-soft);
+      }
+
+      .orb {
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(79, 214, 255, 0.4),
+          transparent 65%
+        );
+        right: -35px;
+        top: -40px;
+        pointer-events: none;
+        opacity: 0.75;
+      }
+
+      .section {
+        padding: 18px 18px 16px;
+        border-radius: var(--radius-xl);
+        background: rgba(7, 10, 23, 0.96);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .section-kicker {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--text-soft);
+      }
+
+      .section-body {
+        color: var(--text-soft);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 18px;
+        margin-top: 10px;
+      }
+
+      .about-chip-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .chip {
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--text-soft);
+        background: rgba(5, 7, 18, 0.9);
+      }
+
+      .pun-box {
+        padding: 12px 12px 10px;
+        border-radius: var(--radius-lg);
+        border: 1px dashed rgba(255, 255, 255, 0.18);
+        background: rgba(5, 7, 18, 0.9);
+        font-size: 13px;
+      }
+
+      .pun-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--accent-alt);
+        margin-bottom: 4px;
+      }
+
+      .games-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 14px;
+        margin-top: 10px;
+      }
+
+      .game-card {
+        border-radius: var(--radius-lg);
+        padding: 12px 12px 11px;
+        background: rgba(5, 8, 21, 0.96);
+        border: 1px solid var(--border-subtle);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .game-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-soft);
+        margin-bottom: 4px;
+      }
+
+      .game-title {
+        font-size: 15px;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .game-meta {
+        font-size: 11px;
+        color: var(--text-soft);
+        margin-bottom: 6px;
+      }
+
+      .game-body {
+        font-size: 12px;
+        color: var(--text-soft);
+      }
+
+      .game-pill {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 10px;
+        padding: 3px 7px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text-soft);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+        gap: 16px;
+        margin-top: 10px;
+      }
+
+      .contact-item {
+        font-size: 13px;
+        color: var(--text-soft);
+        margin-bottom: 8px;
+      }
+
+      .contact-item strong {
+        color: var(--text-main);
+        font-weight: 500;
+      }
+
+      .contact-link {
+        color: var(--accent-alt);
+        text-decoration: none;
+        border-bottom: 1px dashed rgba(79, 214, 255, 0.6);
+      }
+
+      .contact-link:hover {
+        border-bottom-style: solid;
+      }
+
+      .footer {
+        margin-top: 8px;
+        font-size: 11px;
+        color: var(--text-soft);
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .footer small {
+        opacity: 0.8;
+      }
+
+      .footer span {
+        opacity: 0.9;
+      }
+
+      @media (max-width: 800px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        nav {
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+
+        .hero {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .hero-card {
+          order: -1;
+        }
+
+        .about-grid,
+        .contact-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      @media (max-width: 520px) {
+        .page {
+          padding: 16px 14px 28px;
+        }
+
+        .section {
+          padding: 16px 14px 14px;
+        }
+
+        .hero-card {
+          padding: 16px 14px 14px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="logo" aria-label="quiene.studio logo">
+          <div class="logo-mark">Q</div>
+          <div>
+            <div class="logo-text-main">quiene.studio</div>
+            <div class="logo-text-sub">Tiny game studio, giant jokes.</div>
+          </div>
+        </div>
+        <nav aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#games">Games</a>
+          <a href="#name">The Name</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <div class="hero-kicker">
+              <span class="hero-kicker-pill">New studio</span>
+              <span>Mexican × Taiwanese duo</span>
+            </div>
+            <h1 id="hero-title" class="hero-title">
+              Tiny games for
+              <span class="hero-highlight">people who overthink</span>
+              everything.
+            </h1>
+            <p class="hero-text">
+              We’re two best friends from college—one from Mexico, one from
+              Taiwan—making games just because it’s fun, weird, and occasionally
+              emotionally devastating in a good way.
+            </p>
+            <div class="hero-actions">
+              <a href="#games" class="btn btn-primary">
+                View our projects
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a href="#contact" class="btn btn-ghost">
+                Say hi
+                <span aria-hidden="true">✉︎</span>
+              </a>
+            </div>
+            <p class="hero-note">
+              No NFTs. No loot boxes. Just vibes and late-night builds.
+            </p>
+          </div>
+
+          <aside class="hero-card" aria-label="Studio snapshot">
+            <div class="hero-card-tag">Studio snapshot</div>
+            <div class="hero-card-title">Two brains, one gigantic backlog.</div>
+            <p class="hero-card-body">
+              We met in college, kept sending each other strange prototypes, and
+              eventually decided:
+              <em>ok, this probably counts as a studio now.</em>
+            </p>
+            <div class="about-chip-group">
+              <div class="duo-pill">
+                <span class="duo-dot mex"></span>
+                <span class="duo-dot tw"></span>
+                <span class="duo-label">Mex + TW best friends</span>
+              </div>
+              <span class="chip">Narrative-heavy games</span>
+              <span class="chip">Experimental mechanics</span>
+              <span class="chip">Zero crunch policy</span>
+            </div>
+            <div class="orb" aria-hidden="true"></div>
+          </aside>
+        </section>
+
+        <section id="about" class="section" aria-labelledby="about-title">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">About the studio</div>
+              <h2 class="section-title" id="about-title">
+                Built on friendship and bad puns
+              </h2>
+            </div>
+          </div>
+          <div class="about-grid">
+            <div class="section-body">
+              <p>
+                quiene.studio is a two–person game studio created by a
+                Mexican–Taiwanese duo who have been best friends since college.
+                We grew up in different cultures, but bonded over the same
+                things: games, stories, and the feeling of
+                <em>“wait, is this idea too weird?”</em>
+              </p>
+              <p>
+                We don’t chase trends. We chase that specific feeling when a
+                game makes you laugh, think, and care about a character made of
+                12 polygons and a single sound effect.
+              </p>
+              <div class="about-chip-group">
+                <span class="chip">Remote-first dev</span>
+                <span class="chip">PC + console (someday)</span>
+                <span class="chip">Indie at heart</span>
+                <span class="chip">Story + mechanics = ♥</span>
+              </div>
+            </div>
+            <div class="section-body">
+              <p><strong>Our goals are simple:</strong></p>
+              <ul
+                style="
+                  margin: 8px 0 0;
+                  padding-left: 18px;
+                  font-size: 13px;
+                  color: var(--text-soft);
+                "
+              >
+                <li>Make games that feel personal and a bit strange.</li>
+                <li>Experiment with narrative, culture, and humor.</li>
+                <li>Stay small enough to still be having fun.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="games" class="section" aria-labelledby="games-title">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Games</div>
+              <h2 class="section-title" id="games-title">
+                Projects in the lab
+              </h2>
+            </div>
+            <div class="section-body" style="font-size: 12px; max-width: 260px">
+              We’re early days. Think of this like a teaser trailer for the
+              studio itself.
+            </div>
+          </div>
+          <div class="games-list">
+            <article class="game-card">
+              <div class="game-pill">Prototype</div>
+              <div class="game-label">Working title</div>
+              <h3 class="game-title">[REDACTED FOR NOW]</h3>
+              <div class="game-meta">Narrative · Single-player · PC</div>
+              <p class="game-body">
+                Our first game is brewing. Expect dialogue with feelings,
+                decisions that (no) matter, and maybe (many) jokes that land a
+                little too close to real life.
+              </p>
+            </article>
+            <article class="game-card">
+              <div class="game-pill">Idea pool</div>
+              <div class="game-label">Future experiments</div>
+              <h3 class="game-title">Micro–story games</h3>
+              <div class="game-meta">Short · Weird · Replayable</div>
+              <p class="game-body">
+                Tiny games exploring culture, language, and identity. Quick to
+                play, made to linger in your head longer than they should.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="name" class="section" aria-labelledby="name-title">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">The name</div>
+              <h2 class="section-title" id="name-title">
+                Why “quiene.studio”?
+              </h2>
+            </div>
+          </div>
+          <div class="section-body">
+            <p>
+              If you speak Spanish, you probably already hear it:
+              <em>“¿Quién estudió?”</em>
+            </p>
+          </div>
+          <div class="pun-box">
+            <div class="pun-label">The pun</div>
+            <p style="margin: 0 0 6px; color: var(--text-soft)">
+              <strong>quiene.studio</strong> sounds like
+              <strong>“¿Quién estudió?”</strong>, which means
+              <strong>“Who studied?”</strong> in Spanish.
+            </p>
+            <p style="margin: 0; color: var(--text-soft); font-size: 13px">
+              It’s our way of saying: we take our craft seriously, but also not
+              <em>too</em> seriously. We’re always learning, always
+              experimenting, and slightly confused most of the time — in a good
+              way.
+            </p>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section" aria-labelledby="contact-title">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Contact</div>
+              <h2 class="section-title" id="contact-title">
+                Work with us or just say hi
+              </h2>
+            </div>
+          </div>
+          <div class="contact-grid">
+            <div class="section-body">
+              <p>
+                We’re always happy to meet other humans (and maybe future
+                collaborators). Whether you’re a composer, artist, publisher, or
+                just curious, write us a line.
+              </p>
+              <p class="contact-item">
+                <strong>Email</strong><br />
+                <!-- Change this to a real address once you have it -->
+                <a class="contact-link" href="mailto:noneta@quiene.studio">
+                  noneta@quiene.studio
+                </a>
+              </p>
+            </div>
+            <div class="section-body">
+              <p class="contact-item">
+                <strong>Social</strong><br />
+                <!-- Add your real links here -->
+                <span
+                  >Coming soon — we’ll be somewhere between cozy devlogs and
+                  meme chaos.</span
+                >
+              </p>
+              <p class="contact-item">
+                <strong>Collabs</strong><br />
+                Small, weird, heartfelt projects are our favorite. If that’s
+                your vibe, we’ll get along.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <small
+          >© <span id="year"></span> quiene.studio. Two friends, one silly
+          domain.</small
+        >
+        <span>Made with friendship across time zones.</span>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
