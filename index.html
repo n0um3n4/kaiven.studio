@@ -43,6 +43,7 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
+
     <meta charset="UTF-8" />
     <title>quiene.studio — Tiny games, big feelings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -123,10 +124,13 @@
         gap: 10px;
       }
 
+      .logo-mark img {
+        border-radius: 100%;
+      }
       .logo-mark {
         width: 32px;
         height: 32px;
-        border-radius: 40%;
+        border-radius: 100%;
         background: conic-gradient(
           from 180deg,
           var(--accent),
@@ -140,6 +144,18 @@
         font-weight: 700;
         font-size: 18px;
         color: #050712;
+        -webkit-mask-image: radial-gradient(
+          circle at center,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 1) 40%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        mask-image: radial-gradient(
+          circle at center,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 1) 40%,
+          rgba(0, 0, 0, 0) 100%
+        );
       }
 
       .logo-text-main {
@@ -601,7 +617,9 @@
     <div class="page">
       <header>
         <div class="logo" aria-label="quiene.studio logo">
-          <div class="logo-mark">Q</div>
+          <div class="logo-mark">
+            <img src="quiene-studio-32.png" alt="logo" />
+          </div>
           <div>
             <div class="logo-text-main">quiene.studio</div>
             <div class="logo-text-sub">Tiny game studio, giant jokes.</div>
