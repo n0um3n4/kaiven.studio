@@ -550,6 +550,28 @@
         }
       }
 
+      .img-wrap {
+        position: relative;
+        display: inline-block;
+      }
+
+      .img-wrap img {
+        display: block;
+      }
+
+      .img-text {
+        position: absolute;
+        left: 25px;
+        bottom: 0px;
+        padding: 6px 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font:
+          900 8px/1.2 "Share Tech Mono",
+          monospace;
+        border-radius: 8px;
+      }
+
       @media (max-width: 520px) {
         .page {
           padding: 16px 14px 28px;
@@ -684,18 +706,15 @@
                   margin-top: 1rem;
                 "
               >
-                <img
-                  src="ho.jpeg"
-                  alt="Ho"
-                  width="100px"
-                  style="border-radius: 100%"
-                />
-                <img
-                  src="noumena.jpg"
-                  alt="noumena"
-                  width="100px"
-                  style="border-radius: 100%"
-                />
+                <div class="img-wrap">
+                  <img
+                    src="noumena.jpg"
+                    alt="n0um3n4"
+                    width="100px"
+                    style="border-radius: 100%"
+                  />
+                  <span class="img-text">n0um3n4</span>
+                </div>
               </div>
             </div>
           </div>
