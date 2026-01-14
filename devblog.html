@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta charset="UTF-8" />
+    <title>quiene.studio — Devblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="quiene.studio devblog — notes from the lab, prototypes, and the tiny decisions that shape our games."
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+      :root {
+        --bg: #050712;
+        --bg-soft: #0b0f1f;
+        --accent: #ff6dd8;
+        --accent-soft: rgba(255, 109, 216, 0.22);
+        --accent-alt: #4fd6ff;
+        --text-main: #f5f5ff;
+        --text-soft: #a5a6d1;
+        --border-subtle: rgba(255, 255, 255, 0.06);
+        --radius-xl: 24px;
+        --radius-lg: 18px;
+        --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.75);
+        --max-width: 1040px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(
+          circle at top,
+          #14162c 0,
+          #050712 42%,
+          #000 100%
+        );
+        color: var(--text-main);
+        font-family: "Share Tech Mono", monospace;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+      }
+
+      .page {
+        width: 100%;
+        max-width: var(--max-width);
+        padding: 20px 20px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-mark img {
+        border-radius: 100%;
+      }
+
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        background: conic-gradient(
+          from 180deg,
+          var(--accent),
+          var(--accent-alt),
+          var(--accent)
+        );
+        box-shadow: 0 0 18px rgba(255, 109, 216, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        color: #050712;
+        -webkit-mask-image: radial-gradient(
+          circle at center,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 1) 40%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        mask-image: radial-gradient(
+          circle at center,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 1) 40%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+
+      .logo-text-main {
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      nav {
+        display: flex;
+        gap: 16px;
+        font-size: 13px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text-soft);
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition:
+          color 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease;
+      }
+
+      nav a:hover {
+        color: var(--text-main);
+        border-color: rgba(255, 255, 255, 0.12);
+        background: rgba(8, 11, 25, 0.9);
+      }
+
+      nav a[aria-current="page"] {
+        color: var(--text-main);
+        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .hero {
+        border-radius: var(--radius-xl);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 109, 216, 0.25),
+            transparent 55%
+          ),
+          rgba(7, 10, 23, 0.98);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-soft);
+        padding: 22px 22px 20px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 10px 4px 4px;
+        border-radius: 999px;
+        background: rgba(11, 15, 31, 0.9);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-soft);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .hero-kicker-pill {
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .hero-title {
+        margin: 0;
+        font-size: clamp(32px, 4vw, 42px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-highlight {
+        background-image: linear-gradient(
+          120deg,
+          var(--accent),
+          var(--accent-alt)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-text {
+        margin: 0;
+        color: var(--text-soft);
+        max-width: 640px;
+        font-size: 14px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .btn {
+        border-radius: 999px;
+        padding: 9px 18px;
+        font-size: 13px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          transform 0.12s ease,
+          box-shadow 0.12s ease,
+          background 0.12s ease,
+          border-color 0.12s ease,
+          color 0.12s ease;
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+        color: #050712;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+      }
+
+      .btn-ghost {
+        background: rgba(8, 11, 25, 0.9);
+        color: var(--text-soft);
+        border-color: var(--border-subtle);
+      }
+
+      .btn-ghost:hover {
+        background: rgba(11, 15, 31, 0.9);
+        color: var(--text-main);
+        border-color: rgba(255, 255, 255, 0.16);
+      }
+
+      .section {
+        padding: 18px 18px 16px;
+        border-radius: var(--radius-xl);
+        background: rgba(7, 10, 23, 0.96);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .section-kicker {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--text-soft);
+      }
+
+      .section-body {
+        color: var(--text-soft);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 10px;
+      }
+
+      .post-card {
+        border-radius: var(--radius-lg);
+        padding: 12px 12px 11px;
+        background: rgba(5, 8, 21, 0.96);
+        border: 1px solid var(--border-subtle);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .post-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-soft);
+        margin-bottom: 4px;
+      }
+
+      .post-title {
+        font-size: 15px;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .post-meta {
+        font-size: 11px;
+        color: var(--text-soft);
+        margin-bottom: 6px;
+      }
+
+      .post-body {
+        font-size: 12px;
+        color: var(--text-soft);
+      }
+
+      .post-pill {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 10px;
+        padding: 3px 7px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text-soft);
+      }
+
+      .status-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .status-card {
+        border-radius: var(--radius-lg);
+        padding: 12px;
+        background: rgba(5, 7, 18, 0.9);
+        border: 1px dashed rgba(255, 255, 255, 0.12);
+      }
+
+      .status-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--accent-alt);
+        margin-bottom: 6px;
+      }
+
+      .status-card ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--text-soft);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .footer {
+        margin-top: 8px;
+        font-size: 11px;
+        color: var(--text-soft);
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .footer small {
+        opacity: 0.8;
+      }
+
+      .footer span {
+        opacity: 0.9;
+      }
+
+      @media (max-width: 800px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        nav {
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .page {
+          padding: 16px 14px 28px;
+        }
+
+        .section,
+        .hero {
+          padding: 16px 14px 14px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="logo" aria-label="quiene.studio logo">
+          <div class="logo-text-main">
+            <img src="quiene_wide.png" alt="Logo" style="height: 50px" />
+          </div>
+        </div>
+        <nav aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="devblog.html" aria-current="page">Devblog</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="devblog-title">
+          <div class="hero-kicker">
+            <span class="hero-kicker-pill">Field notes</span>
+            devlog transmissions
+          </div>
+          <h1 class="hero-title" id="devblog-title">
+            The lab log for
+            <span class="hero-highlight">tiny games with big feelings</span>.
+          </h1>
+          <p class="hero-text">
+            A place to talk about prototypes, questionable design decisions, and
+            the small discoveries that shape every build.
+          </p>
+          <div class="hero-actions">
+            <a href="index.html" class="btn btn-primary">
+              Back to the studio
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href="index.html#contact" class="btn btn-ghost">
+              Send a thought
+              <span aria-hidden="true">✉︎</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="latest-title">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Latest entries</div>
+              <h2 class="section-title" id="latest-title">
+                Notes from the build pipeline
+              </h2>
+            </div>
+            <div class="section-body" style="font-size: 12px; max-width: 260px">
+              Keep this short and honest. The messy middle is the point.
+            </div>
+          </div>
+          <div class="post-grid">
+            <article class="post-card">
+              <div class="post-pill">Done</div>
+              <div class="post-label">Log 001</div>
+              <h3 class="post-title">Turrets and Drones</h3>
+              <div class="post-meta">July the 5th, 2026</div>
+              <p class="post-body">
+                We added two major combat companions into the live build: automated turrets and support drones. The goal is to make moment-to-moment fights feel more tactical while keeping the core gunplay fast.
+
+                <ul class="post-body">
+                  <li><b>Turrets as battlefield anchors</b>: Place-and-hold gameplay for tight corridors, choke points, and objective defense.</li>
+                  <li><b>Drones as mobile support</b>: Faster repositioning and adaptive coverage in open arenas.</li>
+                  <li><b>Clear role separation</b>: Turrets lean into area denial while drones skew toward flexible pressure and cleanup.</li>
+                </ul>
+              </p>
+            </article>
+            <article class="post-card">
+              <div class="post-pill">Done</div>
+              <div class="post-label">Log 002</div>
+              <h3 class="post-title">Mining Rigs and Katana Melee Mode</h3>
+              <div class="post-meta">July The 10th, 2026</div>
+              <p class="post-body">
+                We have expanded the economy and close-quarters options with mining rigs and a dedicated katana melee mode. This update is about giving players new reasons to move, build, and commit to risky plays.
+
+                <ul class="post-body">
+                  <li><b>Mining rigs as long-term investments</b>: Set them up, protect them, and turn risk into sustained income.</li>
+                  <li><b>Katana melee mode for high-risk aggression</b>: A fast, close-range option that rewards commitment and timing.</li>
+                  <li><b>Resource-driven pacing</b>: Rigs encourage map control, while melee creates sharp spikes of danger and payoff.</li>
+                </ul>
+              </p>
+            </article>
+            <article class="post-card">
+              <div class="post-pill">In Progress</div>
+              <div class="post-label">Log 003</div>
+              <h3 class="post-title">Server Deployment</h3>
+              <div class="post-meta">July the 14th, 2026</div>
+              <p class="post-body">
+                We have reached a point with great features. For now, we are focusing on deployment.
+
+                <ul class="post-body">
+                  <li><b>Servers should remember</b>: Each server will own its own database. Scores are saved per map. Map state persists. Worlds stop being disposable.</li>
+                  <li><b>Servers should belong to themselves</b>: No single central brain. Each shard keeps its history.</li>
+                  <li><b>Observability without interference</b>: An admin app is coming. Stats, discovery, health.</li>
+                  <li><b>Services</b>: AWS, Fly.io and self-hosted machines</li>
+                </ul>
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="status-title">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Status board</div>
+              <h2 class="section-title" id="status-title">Now, next, later</h2>
+            </div>
+          </div>
+          <div class="section-body">
+            Quick snapshot of what is on the table so we stay honest with the
+            scope.
+          </div>
+          <div class="status-grid">
+            <div class="status-card">
+              <div class="status-title">Now</div>
+              <ul>
+                <li>Adding scripts for proper release on AWS and Fly.io.</li>
+                <li>Also simple script for a LAN party.</li>
+              </ul>
+            </div>
+            <div class="status-card">
+              <div class="status-title">Next</div>
+              <ul>
+                <li>We have a few ideas for new guns and bullets.</li>
+                <li>Better algorithms of how Enemies and Bosses hunt.</li>
+                <li>Redesign the UI *yuck*.</li>
+              </ul>
+            </div>
+            <div class="status-card">
+              <div class="status-title">Later</div>
+              <ul>
+                <li>Run tests on the cloud.</li>
+                <li>Integrate Steam and Nintendo for multiplayer mode.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <small>
+          &#8709; <span id="year"></span> quiene.studio. Notes from the back
+          room.</small
+        >
+        <span>Handwritten between builds.</span>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
