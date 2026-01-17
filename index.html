@@ -74,6 +74,7 @@
         display: flex;
         flex-direction: column;
         gap: 32px;
+        z-index: 1;
       }
 
       header {
@@ -598,9 +599,28 @@
           align-items: flex-start;
         }
       }
+      .bg {
+        position: fixed;
+        inset: 0;
+        background: url("/qs.png") center/cover no-repeat;
+
+        /* blur + slight dim */
+        filter: blur(18px) brightness(0.7);
+        transform: scale(1.08); /* prevents blur edges showing */
+        z-index: 0;
+      }
+
+      /* dark tint overlay */
+      .bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55); /* tint strength */
+      }
     </style>
   </head>
   <body>
+    <div class="bg"></div>
     <div class="page">
       <header>
         <div class="logo" aria-label="quiene.studio logo">
