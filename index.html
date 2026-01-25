@@ -1,951 +1,203 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-icon-192x192.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
 
     <meta charset="UTF-8" />
-    <title>quiene.studio — Tiny games, big feelings</title>
+    <title>キエネ Studio — Tiny games, big feelings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
     <meta
       name="description"
       content="quiene.studio — a tiny game studio making weird, heartfelt games just for fun."
     />
+    <link rel="stylesheet" href="txt.css" />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
       :root {
-        --bg: #050712;
-        --bg-soft: #0b0f1f;
-        --accent: #ff6dd8;
-        --accent-soft: rgba(255, 109, 216, 0.22);
-        --accent-alt: #4fd6ff;
-        --text-main: #f5f5ff;
-        --text-soft: #a5a6d1;
-        --border-subtle: rgba(255, 255, 255, 0.06);
-        --radius-xl: 24px;
-        --radius-lg: 18px;
-        --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.75);
-        --max-width: 1040px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        background: radial-gradient(
-          circle at top,
-          #14162c 0,
-          #050712 42%,
-          #000 100%
-        );
-        color: var(--text-main);
-        font-family: "Share Tech Mono", monospace;
+        --bg-top: #ffffff;
+        --bg-bottom: #ffffff;
+        --ink: #1a1a1a;
+        --muted: #1a1a1a;
+        --link: #1a1a1a;
+        --max: 81ch;
+        --pad: clamp(1rem, 4vw, 3rem);
       }
 
       body {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
+        background: white;
       }
 
-      .page {
-        width: 100%;
-        max-width: var(--max-width);
-        padding: 20px 20px 40px;
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-        z-index: 1;
-      }
-
-      header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .logo-mark img {
-        border-radius: 100%;
-      }
-      .logo-mark {
-        width: 32px;
-        height: 32px;
-        border-radius: 100%;
-        background: conic-gradient(
-          from 180deg,
-          var(--accent),
-          var(--accent-alt),
-          var(--accent)
-        );
-        box-shadow: 0 0 18px rgba(255, 109, 216, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 18px;
-        color: #050712;
-        -webkit-mask-image: radial-gradient(
-          circle at center,
-          rgba(0, 0, 0, 1) 0%,
-          rgba(0, 0, 0, 1) 40%,
-          rgba(0, 0, 0, 0) 100%
-        );
-        mask-image: radial-gradient(
-          circle at center,
-          rgba(0, 0, 0, 1) 0%,
-          rgba(0, 0, 0, 1) 40%,
-          rgba(0, 0, 0, 0) 100%
-        );
-      }
-
-      .logo-text-main {
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        font-size: 14px;
-        text-transform: uppercase;
-      }
-
-      .logo-text-sub {
-        font-size: 12px;
-        color: var(--text-soft);
-      }
-
-      nav {
-        display: flex;
-        gap: 16px;
-        font-size: 13px;
-      }
-
-      nav a {
-        text-decoration: none;
-        color: var(--text-soft);
-        padding: 6px 10px;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        transition:
-          color 0.18s ease,
-          border-color 0.18s ease,
-          background 0.18s ease;
-      }
-
-      nav a:hover {
-        color: var(--text-main);
-        border-color: rgba(255, 255, 255, 0.12);
-        background: rgba(8, 11, 25, 0.9);
-      }
-
-      main {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-        gap: 26px;
-        align-items: center;
-      }
-
-      .hero-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 4px 10px 4px 4px;
-        border-radius: 999px;
-        background: rgba(11, 15, 31, 0.9);
-        border: 1px solid var(--border-subtle);
-        color: var(--text-soft);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-      }
-
-      .hero-kicker-pill {
-        padding: 3px 8px;
-        border-radius: 999px;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-weight: 600;
-      }
-
-      h1.hero-title {
-        margin: 16px 0 10px;
-        font-size: clamp(32px, 4vw, 40px);
-        line-height: 1.05;
-        letter-spacing: -0.03em;
-      }
-
-      .hero-highlight {
-        background-image: linear-gradient(
-          120deg,
-          var(--accent),
-          var(--accent-alt)
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .hero-text {
-        margin: 0 0 18px;
-        color: var(--text-soft);
-        max-width: 520px;
-        font-size: 14px;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .btn {
-        border-radius: 999px;
-        padding: 9px 18px;
-        font-size: 13px;
-        border: 1px solid transparent;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition:
-          transform 0.12s ease,
-          box-shadow 0.12s ease,
-          background 0.12s ease,
-          border-color 0.12s ease,
-          color 0.12s ease;
-        white-space: nowrap;
-      }
-
-      .btn-primary {
-        background: linear-gradient(135deg, var(--accent), var(--accent-alt));
-        color: #050712;
-        font-weight: 600;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
-      }
-
-      .btn-ghost {
-        background: rgba(8, 11, 25, 0.9);
-        color: var(--text-soft);
-        border-color: var(--border-subtle);
-      }
-
-      .btn-ghost:hover {
-        background: rgba(11, 15, 31, 0.9);
-        color: var(--text-main);
-        border-color: rgba(255, 255, 255, 0.16);
-      }
-
-      .hero-note {
-        font-size: 11px;
-        color: var(--text-soft);
-        margin-left: 2px;
-      }
-
-      .hero-card {
-        border-radius: var(--radius-xl);
-        background:
-          radial-gradient(
-            circle at top left,
-            rgba(255, 109, 216, 0.25),
-            transparent 55%
-          ),
-          rgba(7, 10, 23, 0.98);
-        border: 1px solid var(--border-subtle);
-        box-shadow: var(--shadow-soft);
-        padding: 18px 18px 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero-card-tag {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--accent-alt);
-      }
-
-      .hero-card-title {
+      pre.txt-block {
         font-size: 16px;
-        font-weight: 600;
       }
 
-      .hero-card-body {
-        font-size: 13px;
-        color: var(--text-soft);
+      .title {
+        color: var(--ink);
+        font-weight: 700;
+        letter-spacing: 0.08em;
       }
 
-      .duo-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 11px;
-        padding: 5px 9px;
-        border-radius: 999px;
-        background: rgba(5, 7, 18, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .duo-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-      }
-
-      .duo-dot.mex {
-        background: #21c35b;
-      }
-
-      .duo-dot.tw {
-        background: #ff5d5d;
-      }
-
-      .duo-label {
-        color: var(--text-soft);
-      }
-
-      .orb {
-        position: absolute;
-        width: 130px;
-        height: 130px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(79, 214, 255, 0.4),
-          transparent 65%
-        );
-        right: -35px;
-        top: -40px;
-        pointer-events: none;
-        opacity: 0.75;
-      }
-
-      .section {
-        padding: 18px 18px 16px;
-        border-radius: var(--radius-xl);
-        background: rgba(7, 10, 23, 0.96);
-        border: 1px solid var(--border-subtle);
-        box-shadow: var(--shadow-soft);
-      }
-
-      .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 12px;
-        margin-bottom: 10px;
-      }
-
-      .section-title {
-        font-size: 18px;
-        font-weight: 600;
-      }
-
-      .section-kicker {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: var(--text-soft);
-      }
-
-      .section-body {
-        color: var(--text-soft);
-        font-size: 14px;
-        line-height: 1.6;
-      }
-
-      .about-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-        gap: 18px;
-        margin-top: 10px;
-      }
-
-      .about-chip-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 8px;
-      }
-
-      .chip {
-        padding: 5px 10px;
-        border-radius: 999px;
-        font-size: 11px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: var(--text-soft);
-        background: rgba(5, 7, 18, 0.9);
-      }
-
-      .pun-box {
-        padding: 12px 12px 10px;
-        border-radius: var(--radius-lg);
-        border: 1px dashed rgba(255, 255, 255, 0.18);
-        background: rgba(5, 7, 18, 0.9);
-        font-size: 13px;
-      }
-
-      .pun-label {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        color: var(--accent-alt);
-        margin-bottom: 4px;
-      }
-
-      .games-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 14px;
-        margin-top: 10px;
-      }
-
-      .game-card {
-        border-radius: var(--radius-lg);
-        padding: 12px 12px 11px;
-        background: rgba(5, 8, 21, 0.96);
-        border: 1px solid var(--border-subtle);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .game-label {
-        font-size: 11px;
-        text-transform: uppercase;
+      pre.txt-block b {
+        color: var(--link);
+        font-weight: 700;
         letter-spacing: 0.16em;
-        color: var(--text-soft);
-        margin-bottom: 4px;
       }
 
-      .game-title {
-        font-size: 15px;
-        font-weight: 500;
-        margin-bottom: 4px;
+      pre.txt-block em {
+        color: var(--muted);
+        font-style: italic;
       }
 
-      .game-meta {
-        font-size: 11px;
-        color: var(--text-soft);
-        margin-bottom: 6px;
-      }
-
-      .game-body {
-        font-size: 12px;
-        color: var(--text-soft);
-      }
-
-      .game-pill {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        font-size: 10px;
-        padding: 3px 7px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        color: var(--text-soft);
-      }
-
-      .contact-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-        gap: 16px;
-        margin-top: 10px;
-      }
-
-      .contact-item {
-        font-size: 13px;
-        color: var(--text-soft);
-        margin-bottom: 8px;
-      }
-
-      .contact-item strong {
-        color: var(--text-main);
-        font-weight: 500;
-      }
-
-      .contact-link {
-        color: var(--accent-alt);
-        text-decoration: none;
-        border-bottom: 1px dashed rgba(79, 214, 255, 0.6);
-      }
-
-      .contact-link:hover {
-        border-bottom-style: solid;
-      }
-
-      .footer {
-        margin-top: 8px;
-        font-size: 11px;
-        color: var(--text-soft);
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .footer small {
-        opacity: 0.8;
-      }
-
-      .footer span {
-        opacity: 0.9;
-      }
-
-      @media (max-width: 800px) {
-        header {
-          flex-direction: column;
-          align-items: flex-start;
+      @media (prefers-reduced-motion: no-preference) {
+        .title::after {
+          content: " |";
+          animation: blink 1.1s steps(2, start) infinite;
         }
 
-        nav {
-          width: 100%;
-          justify-content: flex-start;
-          flex-wrap: wrap;
-        }
-
-        .hero {
-          grid-template-columns: minmax(0, 1fr);
-        }
-
-        .hero-card {
-          order: -1;
-        }
-
-        .about-grid,
-        .contact-grid {
-          grid-template-columns: minmax(0, 1fr);
+        @keyframes blink {
+          0%,
+          49% {
+            opacity: 1;
+          }
+          50%,
+          100% {
+            opacity: 0;
+          }
         }
       }
 
-      .img-wrap {
-        position: relative;
-        display: inline-block;
-      }
-
-      .img-wrap img {
-        display: block;
-      }
-
-      .img-text {
-        position: absolute;
-        left: 25px;
-        bottom: 0px;
-        padding: 6px 10px;
-        background: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        font:
-          900 8px/1.2 "Share Tech Mono",
-          monospace;
-        border-radius: 8px;
-      }
-
-      @media (max-width: 520px) {
-        .page {
-          padding: 16px 14px 28px;
+      @media (max-width: 700px) {
+        pre.txt-block {
+          white-space: pre-wrap;
         }
-
-        .section {
-          padding: 16px 14px 14px;
-        }
-
-        .hero-card {
-          padding: 16px 14px 14px;
-        }
-
-        .hero-actions {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .footer {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
-      .bg {
-        position: fixed;
-        inset: 0;
-        background: url("/qs.png") center/cover no-repeat;
-
-        /* blur + slight dim */
-        filter: blur(18px) brightness(0.7);
-        transform: scale(1.08); /* prevents blur edges showing */
-        z-index: 0;
-      }
-
-      /* dark tint overlay */
-      .bg::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.55); /* tint strength */
       }
     </style>
   </head>
   <body>
-    <div class="bg"></div>
-    <div class="page">
-      <header>
-        <div class="logo" aria-label="quiene.studio logo">
-          <div class="logo-text-main">
-            <img src="quiene-studio.png" alt="Logo" style="height: 80px" />
-          </div>
-        </div>
-        <nav aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#games">Games</a>
-          <a href="#name">The Name</a>
-          <a href="devblog.html">Devblog</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+    <main class="txt" id="content">
+      <pre class="txt-block">
+============================================================
+<span class="title">キエネ Studio</span>
+============================================================
 
-      <main>
-        <section class="hero" aria-labelledby="hero-title">
-          <div>
-            <h1 id="hero-title" class="hero-title">
-              Tiny games for
-              <span class="hero-highlight">people who can’t stop thinking</span>
-              — even when they should.
-            </h1>
-            <p class="hero-text">
-              We make fun, weird games. Sometimes they punch you in the
-              feelings. Not on purpose. Mostly.
-            </p>
-            <div class="hero-actions">
-              <a href="#games" class="btn btn-primary">
-                Show me the experiments
-                <span aria-hidden="true">↗</span>
-              </a>
-              <a href="#contact" class="btn btn-ghost">
-                Say hi (gently)
-                <span aria-hidden="true">✉︎</span>
-              </a>
-            </div>
-            <p class="hero-note">Just vibes, coffee, and late-night builds.</p>
-          </div>
+<em>Tiny games for people who cannot stop thinking -- even when they should.</em>
+We make fun, weird games. Sometimes they punch you in the feelings. Not on
+purpose. Mostly.
+Just vibes, coffee, and late-night builds.
 
-          <aside class="hero-card" aria-label="Studio snapshot">
-            <div class="hero-card-tag">Studio snapshot</div>
-            <div class="hero-card-title">One gigantic backlog.</div>
-            <p class="hero-card-body">
-              We got tired of the system, the noise, the “optimize your soul”
-              culture. And one day we said:
-              <em>ok. maybe we build our own little universe.</em>
-            </p>
-            <div class="about-chip-group">
-              <span class="chip">Narrative-heavy games</span>
-              <span class="chip">Experimental mechanics</span>
-              <span class="chip">Zero crunch policy</span>
-            </div>
-            <div class="orb" aria-hidden="true"></div>
-          </aside>
-        </section>
+Jump: [<a href="#about">about</a>] [<a href="#games">games</a>] [<a href="#name">the name</a>] [<a href="devblog.html">devblog</a>] [<a href="#contact">contact</a>]
 
-        <section id="about" class="section" aria-labelledby="about-title">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">About the studio</div>
-              <h2 class="section-title" id="about-title">
-                Built on friendship and questionable jokes
-              </h2>
-            </div>
-          </div>
-          <div class="about-grid">
-            <div class="section-body">
-              <p>
-                quiene.studio is a tiny studio made by friends. Different
-                cultures. Same disease: games, stories, and that moment where
-                you whisper,
-                <em>"wait… is this idea too weird?"</em>
-              </p>
-              <p>
-                We don’t chase trends. We chase that specific thing: when a game
-                makes you laugh, then think, then care about a character made of
-                12 polygons and one sound effect like it’s your oldest friend.
-              </p>
-              <div class="about-chip-group">
-                <span class="chip">Remote-first dev</span>
-                <span class="chip">PC + console</span>
-                <span class="chip">Indie at heart</span>
-                <span class="chip">Story + mechanics = ♥</span>
-              </div>
-            </div>
-            <div class="section-body">
-              <p><strong>Our goals are simple:</strong></p>
-              <ul
-                style="
-                  margin: 8px 0 0;
-                  padding-left: 18px;
-                  font-size: 13px;
-                  color: var(--text-soft);
-                "
-              >
-                <li>
-                  Make games that feel personal — and a little strange (because
-                  life is).
-                </li>
-                <li>
-                  Experiment with narrative, culture, and humor without asking
-                  permission.
-                </li>
-                <li>
-                  Stay small enough that we still remember why we started: fun.
-                </li>
-              </ul>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-evenly;
-                  margin-top: 1rem;
-                "
-              >
-                <div class="img-wrap">
-                  <img
-                    src="noumena.jpg"
-                    alt="n0um3n4"
-                    width="100px"
-                    style="border-radius: 100%"
-                  />
-                  <span class="img-text">n0um3n4</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+<a id="snapshot"></a>------------------------------------------------------------
+<b>STUDIO SNAPSHOT</b>
+------------------------------------------------------------
 
-        <section id="games" class="section" aria-labelledby="games-title">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">Games</div>
-              <h2 class="section-title" id="games-title">
-                Projects in the lab
-              </h2>
-            </div>
-            <div class="section-body" style="font-size: 12px; max-width: 260px">
-              We’re early days. Think of this as a teaser trailer for the studio
-              itself. The game is: we become real.
-            </div>
-          </div>
-          <div class="games-list">
-            <article class="game-card">
-              <div class="game-pill">In Progress</div>
-              <div class="game-label">Working title</div>
-              <h3 class="game-title">
-                <b>ëëntïï</em>
-              </h3>
-              <div class="game-meta">
-                Single player · PC/Steam/Switch
-              </div>
-              <p class="game-body">
-                ëëntïï is a solitary journey.
-                <br/>
-                You are an entomologist, trained to observe the smallest lives and suddenly entrusted with the largest responsibility imaginable.
-                <br/>
-                The Cosmos itself has spoken.
-                <br/>
-                Protect the Ant Queen.
-                <br/>
-                If she falls, the species disappears.
-                And with it, something the universe cannot afford to lose.
-                <br/>
-                About what it feels like to carry a mission so important that failure does not come with redemption.
-                About guarding something fragile while the world presses in from every direction.
-                About learning that responsibility is not glory, it is vigilance, doubt, and endurance.
-                <br/>
-                ëëntïï asks a simple, terrifying question:
-                <br/>
-                What does it mean to be chosen,
-                when the cost of being wrong is extinction?
-              </p>
-            </article>
-            <article class="game-card">
-              <div class="game-pill">In Progress</div>
-              <div class="game-label">Working title</div>
-              <h3 class="game-title">
-                <b>Kaíven</em>
-              </h3>
-              <div class="game-meta">
-                Single player · Episodic Adventure Game · PC/Steam/Switch
-              </div>
-              <p class="game-body">
-                Kaíven is an episodic adventure about love that refuses erasure.
-                <br/>
-                It is a journey through space, yes, but more than that, it is a passage through existence itself. Through what it means to love someone across bodies, timelines, and forgetting. Through what it costs to lose them. Again. And again.
-                <br/>
-                It is a space opera.
-                A cosmic adventure.
-                <br/>
-                There is terror here.
-                The kind that comes from realizing reality may be imposed.
-                There is humor too, quiet, absurd, human, because even at the edge of the cosmos, laughter survives.
-                And above all, there is love. Persistent. Unreasonable. Unwilling to disappear.
-                <br/>
-                Kaíven asks what remains when the one you love is taken from you,
-                and what kind of being you become when you keep searching anyway.
-                <br/>
-                This is not a story about saving the universe.
-                <br/>
-                It is a story about seeing it clearly
-                and choosing to love within it,
-                even when that love hurts.
-              </p>
-            </article>
-            <article class="game-card">
-              <div class="game-pill">In Progress</div>
-              <div class="game-label">Working title</div>
-              <h3 class="game-title">
-                <b>GLOG</b>: <em>Guns, Lots Of Guns</em>
-              </h3>
-              <div class="game-meta">
-                Multiple-player · Rogue-like · PC/Steam/Switch
-              </div>
-              <p class="game-body">
-                Welcome to Planet Fok.
-                <br/>
-                Everything wants you dead. So you do the
-                reasonable thing: collect a ridiculous amount of guns and invite
-                your friends to make bad decisions together.
-                <br/>
-                Endless bosses.
-                <br/>
-                Endless loot.
-                <br/>
-                There is no <em>beat the game</em>.
-                <br/>
-                There is only:
-                survive longer.
-              </p>
-            </article>
-            <article class="game-card">
-              <div class="game-pill">Prototype</div>
-              <div class="game-label">Working title</div>
-              <h3 class="game-title">[REDACTED FOR NOW]</h3>
-              <div class="game-meta">Narrative · Single-player · PC</div>
-              <p class="game-body">
-                The first one is brewing. Expect dialogue with feelings, choices
-                that (don’t) matter, and jokes that land a little too close to
-                home. Classic.
-              </p>
-            </article>
-          </div>
-        </section>
+One gigantic backlog.
+We got tired of the system, the noise, the "optimize your soul" culture.
+And one day we said: ok, maybe we build our own little universe.
 
-        <section id="name" class="section" aria-labelledby="name-title">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">The name</div>
-              <h2 class="section-title" id="name-title">
-                Why “quiene.studio”?
-              </h2>
-            </div>
-          </div>
-          <div class="section-body">
-            <p>
-              If you speak Spanish, you probably already hear it:
-              <em>“¿Quién estudió?”</em>
-            </p>
-          </div>
-          <div class="pun-box">
-            <div class="pun-label">The pun</div>
-            <p style="margin: 0 0 6px; color: var(--text-soft)">
-              <strong>quiene.studio</strong> sounds like
-              <strong>“¿Quién estudió?”</strong>, which means
-              <strong>“Who studied?”</strong> in Spanish.
-            </p>
-            <p style="margin: 0; color: var(--text-soft); font-size: 13px">
-              It’s our way of saying: we take craft seriously, but not
-              <em>too</em> seriously. We’re always learning, always
-              experimenting, and slightly confused most of the time — in the
-              healthy way.
-            </p>
-          </div>
-        </section>
+<a id="about"></a>------------------------------------------------------------
+<b>ABOUT</b>
+------------------------------------------------------------
 
-        <!-- Contact -->
-        <section id="contact" class="section" aria-labelledby="contact-title">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">Contact</div>
-              <h2 class="section-title" id="contact-title">
-                Say hi
-              </h2>
-            </div>
-          </div>
-          <div class="contact-grid">
-            <div class="section-body">
-              <p>
-                We like meeting other humans (and future collaborators). If
-                you’re a composer, artist, publisher, or just curious — send a
-                line. If you’re weird in a kind way, we’ll probably get along.
-              </p>
-              <p class="contact-item">
-                <strong>Email</strong><br />
-                <!-- Change this to a real address once you have it -->
-                <a class="contact-link" href="mailto:noneta@quiene.studio">
-                  noneta@quiene.studio
-                </a>
-              </p>
-            </div>
-            <div class="section-body">
-              <p class="contact-item">
-                <strong>Collabs</strong><br />
-                Small, weird, heartfelt projects are our favorite. If that’s
-                your vibe, we’ll get along.
-              </p>
-            </div>
-          </div>
-        </section>
-      </main>
+キエネ Studio is a tiny studio made by friends. Different cultures, same
+disease: games, stories, and that moment you whisper, "wait... is this
+idea too weird?"
 
-      <footer class="footer">
-        <small
-          >∅ <span id="year"></span> quiene.studio. Friends, one silly
-          domain.</small
-        >
-        <span>Made with friendship across time zones.</span>
-      </footer>
-    </div>
+We do not chase trends. We chase that specific thing: when a game makes
+you laugh, then think, then care about a character made of 12 polygons
+and one sound effect like it is your oldest friend.
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+Built for:
+  - narrative-heavy games
+  - experimental mechanics
+  - remote-first dev
+  - indie at heart
+  - story + mechanics = heart
+
+<a id="games"></a>------------------------------------------------------------
+<b>GAMES</b>
+------------------------------------------------------------
+
+We are early days. Think of this as a teaser trailer for the studio
+itself. The game is: we become real.
+
+[In progress] ëëntïï
+  A solitary journey. You are an entomologist tasked with protecting the
+  Ant Queen. About responsibility without redemption and the weight of
+  being chosen.
+
+[In progress] Kaíven
+  Episodic adventure about love that refuses erasure across timelines.
+  A space opera with quiet humor, terror, and persistent hope.
+
+[In progress] GLOG: Guns, Lots Of Guns
+  Multiplayer rogue-like. Endless bosses. Endless loot.
+  There is no "beat the game".
+  There is only survive longer.
+
+[Prototype] [REDACTED FOR NOW]
+  Dialogue with feelings, choices that (don't) matter, jokes too close
+  to home.
+
+<a id="name"></a>------------------------------------------------------------
+<b>THE NAME</b>
+------------------------------------------------------------
+キエネ Studio sounds like "quien estudio?" ("who studied?").
+We take craft seriously, but not too seriously. We keep learning, keep
+experimenting, and stay a little confused (the healthy kind).
+
+<a id="contact"></a>------------------------------------------------------------
+<b>CONTACT</b>
+------------------------------------------------------------
+
+Email: <a href="mailto:noneta@quiene.studio">noneta@quiene.studio</a>
+Collabs: small, weird, heartfelt projects are our favorite.
+
+------------------------------------------------------------
+
+Friends, one silly domain.
+</pre>
+    </main>
   </body>
 </html>
