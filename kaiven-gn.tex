@@ -1,0 +1,426 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xparse}
+\usepackage[utf8]{inputenc}
+
+% ---------- Global script feel ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\raggedright
+
+% ---------- Counters ----------
+\newcounter{gnpage}
+\newcounter{gnpanel}[gnpage]
+\renewcommand{\thegnpage}{\arabic{gnpage}}
+\renewcommand{\thegnpanel}{\arabic{gnpanel}}
+
+% ---------- Tunable indents ----------
+\newlength{\GNDialogueLeft}
+\newlength{\GNDialogueRight}
+\setlength{\GNDialogueLeft}{0.22\textwidth}
+\setlength{\GNDialogueRight}{0.22\textwidth}
+
+% ---------- Title block ----------
+\NewDocumentCommand{\GNTitle}{ m m O{\today} }{%
+  \thispagestyle{empty}
+  \vspace*{0.18\textheight}
+  {\Large\bfseries #1\par}
+  \vspace{0.5em}
+  {\large #2\par}
+  \vspace{1em}
+  {\itshape #3\par}
+  \vfill
+  \newpage
+}
+
+% ---------- Page ----------
+% Usage: \begin{GNPage}[optional page subtitle] ... \end{GNPage}
+\NewDocumentEnvironment{GNPage}{ O{} }{%
+  \refstepcounter{gnpage}
+  \setcounter{gnpanel}{0}
+  \vspace{1em}
+  {\bfseries PAGE \thegnpage%
+    \IfValueT{#1}{ - #1}%
+  }\par
+  \vspace{0.5em}
+}{%
+  \vspace{1em}
+}
+
+% ---------- Scene / Environment ----------
+\NewDocumentCommand{\Env}{ +m }{%
+  {\bfseries\MakeUppercase{#1}}\par
+}
+
+% ---------- Panel ----------
+% Starred version doesn't increment (useful for splash / non-numbered beats)
+% Usage: \Panel[optional label]{description}
+\NewDocumentCommand{\Panel}{ s O{} +m }{%
+  \par\vspace{0.5em}
+  \IfBooleanTF{#1}{%
+    {\bfseries PANEL%
+      \IfValueT{#2}{\ \textnormal{(\MakeUppercase{#2})}}%
+    }\par
+  }{%
+    \refstepcounter{gnpanel}
+    {\bfseries PANEL \thegnpanel%
+      \IfValueT{#2}{\ \textnormal{(\MakeUppercase{#2})}}%
+    }\par
+  }%
+  #3\par
+}
+
+% ---------- Action ----------
+\NewDocumentCommand{\Action}{ +m }{%
+  #1\par
+}
+
+% ---------- Caption / Narration ----------
+\NewDocumentCommand{\Caption}{m m}{%
+  {\itshape CAPTION (#1): #2}\par
+}
+\NewDocumentCommand{\Narration}{ +m }{%
+  {\itshape NARRATION: #1}\par
+}
+
+\newcommand{\Aeluun}[2]{
+\begin{center}
+  {\textit{#1}} \\
+  {\textit{\footnotesize{#2}}}
+\end{center}
+}
+
+% ---------- SFX ----------
+\NewDocumentCommand{\SFX}{ +m }{%
+  {\bfseries SFX: \MakeUppercase{#1}}\par
+}
+
+% ---------- Transition ----------
+\NewDocumentCommand{\Transition}{ +m }{%
+  \hfill{\bfseries \MakeUppercase{#1}}\par
+}
+
+% ---------- Note to self (won't look like a panel element) ----------
+\NewDocumentCommand{\Note}{ +m }{%
+  {\small\itshape [NOTE: #1]}\par
+}
+
+% ---------- Dialogue ----------
+% Usage: \Dialogue[optional parenthetical]{CHARACTER}{line(s)}
+\NewDocumentCommand{\Dialogue}{ O{} m +m }{%
+  {\par\noindent\centering\textsc{#2}\par}
+  \begin{list}{}{%
+    \setlength{\leftmargin}{\GNDialogueLeft}%
+    \setlength{\rightmargin}{\GNDialogueRight}%
+    \setlength{\itemsep}{0pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\topsep}{2pt}%
+  }%
+    \item
+      \IfValueT{#1}{\par}
+      #3
+  \end{list}%
+}
+
+% Optional quick beats
+\NewDocumentCommand{\Beat}{}{%
+  {\itshape (beat)}\par
+}
+
+\newcommand{\dedication}[1]{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \vspace*{\fill}
+  \begin{center}\textit{#1}\end{center}
+  \vspace*{\fill}
+  \cleardoublepage
+}
+
+\newcommand{\lyrics}[1]{%
+  \begin{center}
+  	\small (\scriptsize ( \tiny \textit{#1} \scriptsize )\small )
+  \end{center}
+}
+
+\begin{document}
+
+\GNTitle{KA\'{I}VEN | Chapter One: The End, The Beginning and The In Between}{noumena ashitaka hundim\"{a}gi-mei}[Draft \small{(v0.1)} - \today]
+
+\dedication{
+sa \\
+helna varë \\
+helna nü\\
+sa elën\\
+jää kai\\
+silna na
+}
+
+\begin{GNPage}[THE MOUTH OF NIGHT]
+
+
+\Panel[WIDE / EXTERIOR]{Wrecked ship suspended before a gargantuan black hole. The accretion disk burns like a fractured crown. Light bends, unwilling.}
+
+\Caption{ZÁALI}{We have been running for so long that even the stars seem tired of witnessing it.}
+
+\Caption{ZÁALI}{The ship is broken. Its bones cracked. Its skin torn. And there is no gentle harbor left in the void.}
+
+\Panel[INTERIOR / BRIDGE WIDE]{Crew slumped at their stations. Consoles flicker and die. ZÁALI stands rigid, hands braced, as if holding reality together by force alone.}
+
+\Caption{ZÁALI}{They trusted me. That trust is the sharpest thing in the room.}
+
+\Panel[DETAILS / SYSTEM READOUT]{Cracked display: HULL 12\%. Structural failure imminent.}
+
+\Caption{ZÁALI}{How many times can a man make the same choice and still call it courage?}
+
+\Caption{ZÁALI}{How many times can he lead others into fire and insist it was \textbf{the only way}?}
+
+\lyrics{caminos largos sin un final}
+
+\Panel[CLOSE-UP / CREW FACES]{Silent tears. Trembling hands. Someone’s fingers hover near an eject lever, undecided.}
+
+\Caption{ZÁALI}{Once, I wanted a simpler life.}
+
+\Caption{ZÁALI}{A house. A door that locks. Mornings that mean bread, not battle.}
+
+\Caption{ZÁALI}{But I stepped onto this road again and again, and each time I told myself it would be the last.}
+
+\Panel[LOW ANGLE / ZÁALI + WINDOW]{The black hole swells, larger now, patient and absolute.}
+
+\Caption{ZÁALI}{Why do I keep choosing this?}
+
+\Caption{ZÁALI}{Why does it feel… like I am repeating myself?}
+
+\Panel[FULL-BLEED / EXTERIOR]{The ship reduced to a speck, being pulled inward. Stars smear into wounded lines.}
+
+\Caption{ZÁALI}{As if an unseen hand placed the pieces long before I ever reached the board.}
+
+\Caption{ZÁALI}{As if the world has grooves worn deep into it, and my feet fall into them no matter how fiercely I resist.}
+
+\Caption{ZÁALI}{If this ends the way it always ends… then what, in the name of every light that ever burned, was I meant to learn?}
+
+\end{GNPage}
+
+\begin{GNPage}[A SMALL GRAVE]
+
+\Panel[WIDE / PARK]{A modest park. Trees. A bench. Summer light. At the edge, a small patch of freshly turned earth.}
+
+\Caption{ZÁALI}{Pain is not a stranger. It is the oldest crewman aboard every ship I have ever flown.}
+
+\Panel[MEDIUM / YOUNG ZÁALI]{ZÁALI, six years old, kneeling with a small shovel. Dirt stains his hands. His cheeks are wet. Beside him, a small bundle wrapped in cloth—his dog.}
+
+\Caption{ZÁALI}{It sits quietly in the corner while we laugh, and it does not laugh with us.}
+
+\lyrics{sabor a silencio en cada rincón, grita el vacío de mi corazón}
+
+\Panel[DETAIL]{His small fingers press the earth down gently, carefully, as if tucking someone in for the night.}
+
+\Caption{ZÁALI}{It watches us eat, and sleep, and make promises without knowing the price they will demand later.}
+
+\Panel[MEDIUM / THE OLD MAN ENTERS]{A mysterious old man stands a few steps away. Simple clothes. Unremarkable. Yet somehow too still, as if the world has learned to pause around him. No menace. Only weight.}
+
+\Caption{ZÁALI}{Then, when the alarms finally begin, it rises—quietly—as if it had been waiting all along for its true work.}
+
+\Panel[TWO-SHOT / OLD MAN + CHILD]{The old man crouches to ZÁALI’s level. He keeps a respectful distance. Close enough to be present. Far enough not to intrude.}
+
+\Dialogue{OLD MAN}{What was his name?}
+
+\Panel[CLOSE-UP / YOUNG ZÁALI]{ZÁALI looks up. Eyes glassy. Throat locked. His mouth opens, but nothing comes.}
+
+\Caption{ZÁALI}{They tell you existence is a gift.}
+
+\Caption{ZÁALI}{If that is true, it is a gift wrapped in thorns—and the blood on the ribbon is usually your own.}
+
+\Panel[MEDIUM / OLD MAN, SOFT]{The old man’s expression is calm. Tender. Certain in a way that is almost frightening, because it carries no doubt and no cruelty.}
+
+\Dialogue{OLD MAN}{I know that hurt.
+
+You will see them again...
+
+Your dogs.
+
+Just not the way you’re imagining right now.
+
+Some things don’t come back the same way they leave.
+
+You’re still too small to see the shape of it.
+
+That’s all right.
+
+Time has a way of explaining things without using words.}
+
+\end{GNPage}
+
+
+\begin{GNPage}[BACK TO THE SHIP]
+
+\Panel[INTERIOR / BRIDGE]{A sudden jolt. Sparks burst from a console. The crew braces instinctively.}
+
+\Caption{ZÁALI}{I have crossed a hundred skies. I have tasted a hundred triumphs.}
+
+\Caption{ZÁALI}{None of them were clean.}
+
+\Panel[EXTERIOR / SHIP]{The ship tumbles slightly as the gravity well tightens its pull.}
+
+\Caption{ZÁALI}{Victory is just a word we use when grief has not caught up yet.}
+
+\Panel[MONTAGE]{Fragments like broken memory: a helmet spinning slowly into darkness, a hand slipping away, a body wrapped and released into the void.}
+
+\Caption{ZÁALI}{I remember faces the way sailors remember storms.}
+
+\Caption{ZÁALI}{A smile that went out.}
+
+\Caption{ZÁALI}{A hand reaching for mine… and finding nothing.}
+
+\Panel[CLOSE-UP / ZÁALI’S HANDS]{His hands tremble. Then, deliberately, they steady.}
+
+\Caption{ZÁALI}{I have buried companions in places that do not allow graves.}
+
+\Caption{ZÁALI}{I have left them drifting where no planet will ever claim them.}
+
+\Panel[CLOSE-UP / CREW MEMBER]{A crew member, awake now, stares at ZÁALI. The question is unspoken, but clear: why again?}
+
+\Caption{ZÁALI}{It is a strange thing, to be called \textbf{leader}, when every step of your path is marked by those who followed you and did not return.}
+
+\Panel[WINDOW / BLACK HOLE]{The black hole dominates the view now—immense, patient, inescapable.}
+
+\Caption{ZÁALI}{Some nights, I wonder if I am a collector of endings.}
+
+\Caption{ZÁALI}{And the worst of it is not that I lost them.}
+
+\Caption{ZÁALI}{The worst of it is that I can still feel them… aching in the places they used to be.}
+
+\end{GNPage}
+
+
+\begin{GNPage}[THE OLD MAN LEAVES]
+
+\Panel[MEDIUM / OLD MAN STANDS]{The old man rises. The effort looks practiced, almost performed, as if he is carefully remembering how an old body is supposed to behave.}
+
+\Caption{ZÁALI}{There are losses you can accept—the swift, clean kind, where the universe is simply cruel and then moves on.}
+
+\Panel[DETAIL / YOUNG ZÁALI’S FACE]{ZÁALI’s grief shifts. Confusion enters. Hope intrudes like an uninvited guest who does not ask permission.}
+
+\Caption{ZÁALI}{And then there are the other losses… the ones that return.}
+
+\Panel[WIDE / THE PARK PATH]{The old man begins walking away along the path. Sunlight gathers behind him, making distance feel intentional.}
+
+\Dialogue{YOUNG ZÁALI}{…I’ll see him again?}
+
+\Panel[OVER-SHOULDER / OLD MAN, NOT TURNING AROUND]{The old man does not look back—as if looking back would violate a rule he refuses to name.}
+
+\Dialogue{OLD MAN}{Yes.}
+
+\Panel[SURREAL HINT / CHILD POV]{For a fraction of a moment, the world slips: a bird freezes mid-motion, leaves hang too still, the old man’s outline \textbf{double-exposes}, as if time itself hesitated.}
+
+\Caption{ZÁALI}{They do not return as they were.}
+
+\Caption{ZÁALI}{A familiar laugh carried by a stranger’s mouth.}
+
+\Caption{ZÁALI}{A gaze that once knew you, now sliding past as if you were smoke.}
+
+\Panel[MEDIUM / YOUNG ZÁALI ALONE]{ZÁALI kneels by the small grave, watching the space where the old man was. The park feels larger now, as if it contains an infinite distance.}
+
+\end{GNPage}
+
+\begin{GNPage}[THE SEARCH BEGINS]
+
+\Panel[MONTAGE / SPACEPORT CROWD]{Adult ZÁALI moves through a crowded spaceport on a distant world. He freezes—someone ahead carries a posture he knows too well.}
+
+\Caption{ZÁALI}{I have found them again. Sometimes years later. Sometimes worlds apart.}
+
+\Panel[MONTAGE / NEAR-MISS DOOR]{A door slides shut. ZÁALI arrives a moment too late.}
+
+\Caption{ZÁALI}{…and I have missed them by a single choice, a single hour, a single wrong door.}
+
+\Panel[MONTAGE / DIFFERENT LIFE]{A stranger laughs. The laugh is unmistakable—identical to someone we watched die—but the face is not theirs.}
+
+\Caption{ZÁALI}{Do you know what it is to search for a person across the breadth of the cosmos, armed only with grief and intuition?}
+
+\Panel[MONTAGE / SILHOUETTE]{A silhouette in rain and neon. ZÁALI’s breath catches, heart straining forward—then settling back. It is not them.}
+
+\Caption{ZÁALI}{To see a shape in a crowd and feel your heart lunge like a dog at the end of its leash, only to be disappointed. Again.}
+
+\Panel[MONTAGE / THE NAME FALLS]{ZÁALI speaks a name (speech balloon cropped). The stranger offers a polite smile. No recognition.}
+
+\Caption{ZÁALI}{To speak a name you are no longer sure you have the right to speak, and watch it fall between you like something already dead.}
+
+\Panel[BACK TO PRESENT / BRIDGE]{Adult ZÁALI stands on the bridge once more. His eyes are hollowed, shaped by years of searching.}
+
+\Caption{ZÁALI}{They do not remember dying for me.}
+
+\Caption{ZÁALI}{And I… I remember too much.}
+
+\lyrics{en la sombra se esconden verdades... te busco en el aire en mil paisajes}
+
+\end{GNPage}
+
+\begin{GNPage}[THE ARCHITECT]
+
+\Panel[SHIP SHUDDERS]{Reality leans, just enough to be noticed.}
+
+\Caption{ZÁALI}{What finally breaks him is not the pain.}
+
+\Caption{ZÁALI}{It is the pattern.}
+
+\Panel[VISUAL PATTERN MONTAGE]{Fragments repeat across time: the same reaching hand, the same farewell, the same red warning light. As if the cosmos is working from a template.}
+
+\Caption{ZÁALI}{The growing sense that suffering is not an accident, but a design.}
+
+\Panel[BLACK HOLE AS EYE]{The black hole framed like an eye. For a heartbeat, the lensing suggests a face. Watching.}
+
+\Caption{ZÁALI}{I have stared into the dark long enough to suspect it stares back.}
+
+\Panel[THE “SEAM”]{A navigation map glitches into impossible geometry. For an instant, a faint grid appears behind the stars—then vanishes.}
+
+\Caption{ZÁALI}{Some days, I can feel the seams of the world beneath my fingertips.}
+
+\Panel[ZÁALI’S DECISION]{ZÁALI straightens. Not defiant. Resolved. The crew feels the shift without being told.}
+
+\Caption{ZÁALI}{And I know… there will be another battle after this one.}
+
+\Panel[HINT OF A GREATER WAR]{A symbolic panel: nine distant points of light, arranged with intention rather than chance. Or nine shadows implied in the lensing. Chosen.}
+
+\Caption{ZÁALI}{Against the hands that set the rules of the game and call it existence.}
+
+\lyrics{dime ¿dónde va lo que no se dice? ¿se pierde, se queda o cicatriza?}
+
+\end{GNPage}
+
+
+\begin{GNPage}[THE VOW]
+
+\Panel[CREW QUIET]{A hand rests on a shoulder. Exhaustion shared. Intimacy without words.}
+
+\Caption{ZÁALI}{If I were wise, I would let the dark take us gently.}
+
+\Panel[TEMPTATION OF REST]{A peaceful composition—soft light, stillness—its edges poisoned by the pull of the black hole.}
+
+\Caption{ZÁALI}{But I cannot.}
+
+\Panel[FLASHBACK MICRO-BEAT]{A small, intrusive memory: young ZÁALI’s wet eyes. The old man’s voice, distant but intact.}
+
+\Dialogue{OLD MAN}{You will see them again...}
+
+\Panel[ZÁALI RISES]{ZÁALI straightens. Not louder. Sharper. As if something brittle has finally chosen to cut.}
+
+\Caption{ZÁALI}{And if suffering is the law, then I will become its heresy.}
+
+\Panel[FULL-BLEED / DOOR IN THE DARK]{Within the blackness: a hairline seam. A suggestion of a doorway, outlined by nothing at all.}
+
+\vspace{3cm}
+\center \textit{Lo var delna.}
+
+\textit{Lo var na kaelle nor.}
+
+\textit{Eth etheth silna varën, na eth kuul.} 
+
+\textit{Ja na tal kaelna...}
+
+\lyrics{cada sombra guarda un secreto pero mi sombra ya no tiene miedo}
+
+\end{GNPage}
+
+\end{document}
