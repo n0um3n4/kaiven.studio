@@ -66,10 +66,14 @@
 
       body {
         background: white;
+        max-width: 81ch;
+        margin: 0 auto;
       }
 
       pre.txt-block {
         font-size: 16px;
+        max-width: 81ch;
+        text-wrap: auto;
       }
 
       .title {
@@ -122,9 +126,7 @@
 =======================================
 
 <em>Notes from the lab for tiny games with big feelings.</em>
-A place to talk about prototypes, questionable design decisions, and the
-small discoveries that shape every build.
-Keep this short and honest. The messy middle is the point.
+A place to talk about prototypes, questionable design decisions, and the small discoveries that shape every build. Keep this short and honest. The messy middle is the point.
 
 Jump: [<a href="index.html">home</a>] [<a href="#logs">logs</a>] [<a href="#contact">contact</a>]
 
@@ -135,86 +137,48 @@ Jump: [<a href="index.html">home</a>] [<a href="#logs">logs</a>] [<a href="#cont
 
 [Log 006] DynOSTiC | Done
   July the 25th, 2026
-  After a few days tinkering with Kaíven and ëëntïï, my dissatisfaction
-  with both kept growing. I felt boxed in. So I said, "fuckit, no one's
-  waiting", and started a new engine: DynOSTiC (Dynamics of the Space-Time
-  Continuum). It has the features I need to build both games the way I
-  want.
+  After a few days tinkering with Kaíven and ëëntïï, my dissatisfaction with both kept growing. I felt boxed in. So I said, "fuckit, no one's waiting", and started a new engine: DynOSTiC (Dynamics of the Space-Time Continuum). It has the features I need to build both games the way I want.
   Link: <a href="https://app.radicle.xyz/nodes/seed.radicle.garden/rad:zvW6FTUiKUNEZvw23N7eoGYfjvVG">radicle repo</a>
 
 [Log 005] Episodic Adventure Game | In Progress
   July the 16th, 2026 | Kaíven
-  I always imagined Kaíven as a graphic novel. And it still might be.
-  But one morning I woke up with a different certainty.
-  Fuck it.
-  This story does not want to stay still on the page. It wants to be
-  walked through. Paused. Interrupted. Lived in fragments.
-  So it becomes an episodic adventure game.
-  And if it needs its own engine, then I will build that too.
-  Not because it is efficient. Not because it is sensible.
-  Because it feels right.
-  This is how the adventure begins.
+  I always imagined Kaíven as a graphic novel. And it still might be.   But one morning I woke up with a different certainty. Fuck it. This story does not want to stay still on the page. It wants to be walked through. Paused. Interrupted. Lived in fragments. So it becomes an episodic adventure game. And if it needs its own engine, then I will build that too. Because it feels right. This is how the adventure begins.
 
 [Log 004] Entomolist vs Interdimensional Beings | In Progress
   July the 15th, 2026 | ëëntïï
-  I have always been fascinated by ants. By spiders. By the countless
-  species that live beside us, unnoticed, carrying entire worlds on their
-  backs.
-  There is something honest about them. No mythology. No ambition. Just
-  survival, structure, and fragile balance.
+  I have always been fascinated by ants. By spiders. By the countless species that live beside us, unnoticed, carrying entire worlds on their backs. There is something honest about them. No mythology. No ambition. Just survival, structure, and fragile balance.
   Today, I started working on ëëntïï.
-  It is the story of an entomologist who learns that he has been given a task by the Cosmos itself:
-  protect the Ant Queen, or watch a species vanish.
-  This is not a game about heroism. It is about terror. The slow kind.
-  The kind that comes from realizing the weight on your shoulders is real,
-  and that no one is coming to help.
-  ëëntïï is about responsibility at a cosmic scale, filtered through the
-  smallest of lives. About what it feels like to be chosen not for glory,
-  but because extinction has no patience.
+  It is the story of an entomologist who learns that he has been given a task by the Cosmos itself: protect the Ant Queen, or watch a species vanish. This is not a game about heroism. It is about terror. The slow kind. The kind that comes from realizing the weight on your shoulders is real, and that no one is coming to help. ëëntïï is about responsibility at a cosmic scale, filtered through the smallest of lives. About what it feels like to be chosen not for glory, but because extinction has no patience.
 
 [Log 003] Server Deployment | In Progress
   July the 14th, 2026 | Guns, Lots of Guns
-  We have reached a point with great features. For now, we are focusing
-  on deployment.
-  - Servers should remember: each server owns its own database. Scores are
-    saved per map. Map state persists. Worlds stop being disposable.
-  - Servers should belong to themselves: no single central brain. Each
-    shard keeps its history.
-  - Observability without interference: an admin app is coming. Stats,
-    discovery, health.
+  We have reached a point with great features. For now, we are focusing on deployment.
+  - Servers should remember: each server owns its own database. Scores are saved per map. Map state persists. Worlds stop being disposable.
+  - Servers should belong to themselves: no single central brain. Each shard keeps its history.
+  - Observability without interference: an admin app is coming. Stats, discovery, health.
   - Services: AWS, Fly.io and self-hosted machines.
 
 [Log 002] Mining Rigs and Katana Melee Mode | Done
   July the 10th, 2026 | Guns, Lots of Guns
-  We expanded the economy and close-quarters options with mining rigs and
-  a dedicated katana melee mode. This update is about giving players new
-  reasons to move, build, and commit to risky plays.
-  - Mining rigs as long-term investments: set them up, protect them, and
-    turn risk into sustained income.
-  - Katana melee mode for high-risk aggression: a fast, close-range option
-    that rewards commitment and timing.
-  - Resource-driven pacing: rigs encourage map control, while melee creates
-    sharp spikes of danger and payoff.
+  We expanded the economy and close-quarters options with mining rigs and a dedicated katana melee mode. This update is about giving players new reasons to move, build, and commit to risky plays.
+  - Mining rigs as long-term investments: set them up, protect them, and turn risk into sustained income.
+  - Katana melee mode for high-risk aggression: a fast, close-range option that rewards commitment and timing.
+  - Resource-driven pacing: rigs encourage map control, while melee creates sharp spikes of danger and payoff.
 
 [Log 001] Turrets and Drones | Done
   July the 5th, 2026 | Guns, Lots of Guns
-  We added two major combat companions into the live build: automated
-  turrets and support drones. The goal is to make moment-to-moment fights
-  feel more tactical while keeping the core gunplay fast.
-  - Turrets as battlefield anchors: place-and-hold gameplay for tight
-    corridors, choke points, and objective defense.
-  - Drones as mobile support: faster repositioning and adaptive coverage in
-    open arenas.
-  - Clear role separation: turrets lean into area denial while drones skew
-    toward flexible pressure and cleanup.
+  We added two major combat companions into the live build: automated turrets and support drones. The goal is to make moment-to-moment fights feel more tactical while keeping the core gunplay fast.
+  - Turrets as battlefield anchors: place-and-hold gameplay for tight corridors, choke points, and objective defense.
+  - Drones as mobile support: faster repositioning and adaptive coverage in open arenas.
+  - Clear role separation: turrets lean into area denial while drones skew toward flexible pressure and cleanup.
 
 <a id="contact"></a>
 ---------------------------------------
 <b>CONTACT</b>
 ---------------------------------------
 
-Send a thought: <a href="index.html#contact">index.html#contact</a>
-Back to the studio: <a href="index.html">index.html</a>
+Send a thought: <a href="index.html#contact">contact</a>
+<a href="index.html">Back</a>
 
 ---------------------------------------
 
